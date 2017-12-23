@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "stations.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -19,7 +21,8 @@ protected:
     void keyPressEvent(QKeyEvent* keyEvent);
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *m_ui;
+    Stations m_stations;
 };
 
 #endif // MAINWINDOW_H
