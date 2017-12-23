@@ -12,17 +12,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     m_ui->setupUi(this);
 
-    boost::optional<QString> error = m_stations.loadStations();
-    if (error)
+    QString error = m_stations.loadStations();
+    if (!error.isEmpty())
     {
-        m_ui->Station->setText(error.value());
+        m_ui->Station->setText(error);
     }
 
     error = m_commands.loadCommands();
-    if (error)
+    if (!error.isEmpty())
     {
-        m_ui->Station->setText(error.value());
+        m_ui->Station->setText(error);
     }
+
+    connect(&m_player, SIGNAL(song(QString)),
+            this, SLOT(changeSongName(QString)));
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
@@ -51,6 +54,11 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
             break;
         }
     }
+}
+
+void MainWindow::changeSongName(const QString &songName)
+{
+    m_ui->Song->setText(songName);
 }
 
 void MainWindow::updateVolumeStatus()

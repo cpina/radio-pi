@@ -1,8 +1,6 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-#include <boost/optional.hpp>
-
 #include <QString>
 #include <QHash>
 
@@ -20,7 +18,7 @@ public:
 
     Commands();
 
-    boost::optional<QString> loadCommands();
+    QString loadCommands();
 
     QString executeCommand(CommandName commandName);
 

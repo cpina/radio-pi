@@ -2,10 +2,12 @@
 
 #include <QProcess>
 #include <QDebug>
+#include <QRegExp>
 
 Player::Player(QObject* parent)
     :
-      QObject(parent)
+      QObject(parent),
+      m_player(new QProcess)
 {
 
 }
@@ -17,7 +19,7 @@ Player::~Player()
 
 void Player::play(const QString &url)
 {
-    m_player.reset(new QProcess);
+    stopPlaying();
     m_player->start("mplayer", QStringList{"--quiet", url});
 
     connect(m_player.data(), SIGNAL(readyReadStandardOutput()),
@@ -26,7 +28,24 @@ void Player::play(const QString &url)
 
 void Player::processMplayerOutput()
 {
-    qDebug() << "Mplayer output:" << m_player->readAllStandardOutput();
+    QString output = m_player->readAllStandardOutput();
+
+    QRegExp rx("icy-title: (.*)\n");
+    rx.setMinimal(true);
+
+    if (rx.indexIn(output) > -1)
+    {
+        QString name = rx.cap(1);
+        emit song(name);
+    }
+
+    rx = QRegExp("ICY Info: StreamTitle='(.*)';");
+    rx.setMinimal(true);
+    if (rx.indexIn(output) > -1)
+    {
+        QString name = rx.cap(1);
+        emit song(name);
+    }
 }
 
 void Player::stopPlaying()

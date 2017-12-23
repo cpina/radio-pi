@@ -22,6 +22,9 @@ public:
 protected:
     void keyPressEvent(QKeyEvent* keyEvent);
 
+private Q_SLOTS:
+    void changeSongName(const QString& songName);
+
 private:
     void updateVolumeStatus();
 

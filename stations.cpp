@@ -34,7 +34,7 @@ QString Stations::name(const QString& text)
     return QString();
 }
 
-boost::optional<QString> Stations::loadStations()
+QString Stations::loadStations()
 {
     Utils::ErrorOrValue errorOrvalue = Utils::readJsonToVariant("configuration/stations.json");
     m_keyToStreams.clear();
@@ -56,5 +56,5 @@ boost::optional<QString> Stations::loadStations()
         m_keyToStreams.insert(key, station);
     }
 
-    return boost::optional<QString>();
+    return QString();
 }

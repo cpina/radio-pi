@@ -1,6 +1,5 @@
 #include "commands.h"
 
-#include <boost/optional.hpp>
 #include <QDebug>
 #include <QProcess>
 #include <QRegExp>
@@ -12,7 +11,7 @@ Commands::Commands()
 
 }
 
-boost::optional<QString> Commands::loadCommands()
+QString Commands::loadCommands()
 {
     Utils::ErrorOrValue errorOrvalue = Utils::readJsonToVariant("configuration/commands.json");
     m_commandToCommandLine.clear();
@@ -29,7 +28,7 @@ boost::optional<QString> Commands::loadCommands()
         m_commandToCommandLine.insert(command, commandsMap.value(command).toString());
     }
 
-    return boost::optional<QString>();
+    return QString();
 }
 
 QString Commands::executeCommand(CommandName commandName)

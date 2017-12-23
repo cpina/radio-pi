@@ -1,8 +1,6 @@
 #ifndef STATIONS_H
 #define STATIONS_H
 
-#include <boost/optional.hpp>
-
 #include <QString>
 #include <QMap>
 
@@ -20,7 +18,7 @@ public:
     Stations();
     ~Stations();
 
-    boost::optional<QString> loadStations();
+    QString loadStations();
     QString stream(const QString& text);
     QString name(const QString& text);
     bool play(const QString& stationName);
