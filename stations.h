@@ -24,7 +24,7 @@ public:
     QString name(const QString& text);
 
 private:
-    QMap<QString, Station> m_keyToStreams;
+    QHash<QString, Station> m_keyToStreams;
 };
 
 #endif // STATIONS_H

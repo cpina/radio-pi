@@ -28,6 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         m_ui->Station->setText(error.value());
     }
+
+    error = m_commands.loadCommands();
+    if (error)
+    {
+        m_ui->Station->setText(error.value());
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
@@ -47,16 +53,20 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
     {
         case Qt::Key_Up:
         {
+            m_commands.executeCommand(Commands::VolumeUp);
+/*
             QStringList up;
             up << "-M" << "set" << "PCM" << "5%+";
             QProcess::execute("amixer", up);
+            */
             break;
         }
         case Qt::Key_Down:
         {
-            QStringList down;
+            m_commands.executeCommand(Commands::VolumeDown);
+/*            QStringList down;
             down << "-M" << "set" << "PCM" << "5%-";
-            QProcess::execute("amixer", down);
+            QProcess::execute("amixer", down);*/
             break;
         }
     }

@@ -33,6 +33,7 @@ QString Stations::name(const QString& text)
 boost::optional<QString> Stations::loadStations()
 {
     Utils::ErrorOrValue errorOrvalue = Utils::readJsonToVariant("configuration/stations.json");
+    m_keyToStreams.clear();
 
     if (!errorOrvalue.error.isEmpty())
     {

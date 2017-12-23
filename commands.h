@@ -4,6 +4,7 @@
 #include <boost/optional.hpp>
 
 #include <QString>
+#include <QHash>
 
 class Commands
 {
@@ -18,9 +19,14 @@ public:
 
     Commands();
 
-    boost::optional<QString> readCommands();
+    boost::optional<QString> loadCommands();
 
     QString executeCommand(CommandName commandName);
+
+private:
+    QString execute(const QString& command);
+
+    QHash<QString, QString> m_commandToCommandLine;
 
 };
 
