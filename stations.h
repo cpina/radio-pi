@@ -1,10 +1,12 @@
 #ifndef STATIONS_H
 #define STATIONS_H
 
+#include <boost/optional.hpp>
+
 #include <QString>
 #include <QMap>
 
-#include <boost/optional.hpp>
+#include "utils.h"
 
 class Stations
 {

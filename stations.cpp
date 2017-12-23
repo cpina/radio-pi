@@ -32,25 +32,14 @@ QString Stations::name(const QString& text)
 
 boost::optional<QString> Stations::loadStations()
 {
-    QString val;
-    QFile file;
+    Utils::ErrorOrValue errorOrvalue = Utils::readJsonToVariant("configuration/stations.json");
 
-    QFileInfo configurationFileInfo("configuration/stations.json");
-    QString configurationAbsoluteFilePath = configurationFileInfo.absoluteFilePath();
-
-    file.setFileName(configurationAbsoluteFilePath);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!errorOrvalue.error.isEmpty())
     {
-        return QObject::tr("Cannot open: %1").arg(configurationAbsoluteFilePath);
+        return errorOrvalue.error;
     }
 
-    val = file.readAll();
-    file.close();
-    QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
-
-    QVariant radios = d.toVariant();
-
-    QMap<QString, QVariant> radioMap = radios.toMap();
+    QMap<QString, QVariant> radioMap = errorOrvalue.value.toMap();
 
     for (const QString& key : radioMap.keys())
     {
@@ -63,19 +52,4 @@ boost::optional<QString> Stations::loadStations()
     }
 
     return boost::optional<QString>();
-    /*
-    QJsonObject sett2 = d.object();
-    QJsonValue value = sett2.value(QString("appName"));
-    qWarning() << value;
-    QJsonObject item = value.toObject();
-    qWarning() << tr("QJsonObject of description: ") << item;
-
-    qWarning() << tr("QJsonObject[appName] of description: ") << item["description"];
-    QJsonValue subobj = item["description"];
-    qWarning() << subobj.toString();
-
-    qWarning() << tr("QJsonObject[appName] of value: ") << item["imp"];
-    QJsonArray test = item["imp"].toArray();
-    qWarning() << test[1].toString();
-    */
 }

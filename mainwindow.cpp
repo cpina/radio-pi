@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     boost::optional<QString> error = m_stations.loadStations();
     if (error)
     {
-        m_ui->label->setText(error.value());
+        m_ui->Station->setText(error.value());
     }
 }
 
@@ -38,7 +38,7 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
 
     if (!stream.isEmpty())
     {
-        m_ui->label->setText(m_stations.name(text));
+        m_ui->Station->setText(m_stations.name(text));
         mplayer(stream);
         return;
     }
@@ -63,5 +63,6 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
 }
 MainWindow::~MainWindow()
 {
+    kill_mplayer();
     delete m_ui;
 }

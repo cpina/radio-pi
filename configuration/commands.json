@@ -1,4 +1,4 @@
 {
-	"volume_up": "amixer -M set PCM 5%",
-	"volume_down": "amixer -M set PCM 5%"
+	"volume_up": "amixer -M set Master 5%+",
+	"volume_down": "amixer -M set Master 5-%"
 }

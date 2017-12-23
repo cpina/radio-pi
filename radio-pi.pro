@@ -30,10 +30,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     player.cpp \
-    stations.cpp
+    stations.cpp \
+    volume.cpp \
+    commands.cpp \
+    utils.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
-    stations.h
+    stations.h \
+    volume.h \
+    commands.h \
+    utils.h
 
 FORMS    += mainwindow.ui

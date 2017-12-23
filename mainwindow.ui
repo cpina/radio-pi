@@ -16,14 +16,27 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="Station">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Use Remote</string>
+       <string>Station Name</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="Volume">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Volume</string>
       </property>
      </widget>
     </item>
@@ -47,7 +60,6 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
