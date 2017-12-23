@@ -53,6 +53,7 @@ void Player::stopPlaying()
     if (m_player)
     {
         m_player->kill();
+        m_player->waitForFinished();
     }
 }
 
