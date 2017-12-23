@@ -71,7 +71,6 @@ QString Commands::volumeFrom(const QString& amixerOutput)
     if (rx.indexIn(amixerOutput) > -1)
     {
         QString volume = rx.cap(1);
-        qDebug() << volume;
         return volume;
     }
     return QString();

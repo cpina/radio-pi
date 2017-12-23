@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <QJsonObject>
 #include <QFileInfo>
+#include <QCoreApplication>
+#include <QDir>
 
 Utils::Utils()
 {
@@ -16,14 +18,15 @@ Utils::ErrorOrValue Utils::readJsonToVariant(const QString& filePath)
     QString val;
     QFile file;
 
-    QFileInfo configurationFileInfo(filePath);
-    QString configurationAbsoluteFilePath = configurationFileInfo.absoluteFilePath();
+    QString applicationPath = QCoreApplication::applicationDirPath();
+    QString configurationAbsolutePath = QDir::cleanPath(applicationPath + QDir::separator() + filePath);
 
-    file.setFileName(configurationAbsoluteFilePath);
+    file.setFileName(configurationAbsolutePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         ErrorOrValue errorOrvalue;
-        errorOrvalue.error = QObject::tr("Cannot open: %1").arg(configurationAbsoluteFilePath);
+        errorOrvalue.error = QObject::tr("Cannot open: %1").arg(configurationAbsolutePath);
+        return errorOrvalue;
     }
 
     val = file.readAll();

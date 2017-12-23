@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
         m_ui->Station->setText(error);
     }
 
+    updateVolumeStatus();
+
     connect(&m_player, SIGNAL(song(QString)),
             this, SLOT(changeSongName(QString)));
 }

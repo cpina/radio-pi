@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Radio Pi</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,7 +44,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>song</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -57,7 +57,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Volume</string>
+         <string/>
         </property>
        </widget>
       </item>
