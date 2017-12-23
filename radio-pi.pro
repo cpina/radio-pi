@@ -34,13 +34,15 @@ SOURCES += main.cpp\
     stations.cpp \
     volume.cpp \
     commands.cpp \
-    utils.cpp
+    utils.cpp \
+    settings.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
     stations.h \
     volume.h \
     commands.h \
-    utils.h
+    utils.h \
+    settings.h
 
 FORMS    += mainwindow.ui

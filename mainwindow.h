@@ -6,6 +6,7 @@
 #include "stations.h"
 #include "commands.h"
 #include "player.h"
+#include "settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,7 @@ private:
     Stations m_stations;
     Commands m_commands;
     Player m_player;
+    Settings m_settings;
 };
 
 #endif // MAINWINDOW_H
