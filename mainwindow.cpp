@@ -54,23 +54,24 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
         case Qt::Key_Up:
         {
             m_commands.executeCommand(Commands::VolumeUp);
-/*
-            QStringList up;
-            up << "-M" << "set" << "PCM" << "5%+";
-            QProcess::execute("amixer", up);
-            */
+            updateVolumeStatus();
             break;
         }
         case Qt::Key_Down:
         {
             m_commands.executeCommand(Commands::VolumeDown);
-/*            QStringList down;
-            down << "-M" << "set" << "PCM" << "5%-";
-            QProcess::execute("amixer", down);*/
+            updateVolumeStatus();
             break;
         }
     }
 }
+
+void MainWindow::updateVolumeStatus()
+{
+    QString volume = m_commands.executeCommand(Commands::VolumeStatus);
+    m_ui->Volume->setText(QString("%1 %").arg(volume));
+}
+
 MainWindow::~MainWindow()
 {
     kill_mplayer();

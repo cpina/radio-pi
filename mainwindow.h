@@ -22,6 +22,8 @@ protected:
     void keyPressEvent(QKeyEvent* keyEvent);
 
 private:
+    void updateVolumeStatus();
+
     Ui::MainWindow *m_ui;
     Stations m_stations;
     Commands m_commands;

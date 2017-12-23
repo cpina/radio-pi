@@ -14,7 +14,8 @@ public:
         VolumeUp,
         VolumeDown,
         Silence,
-        PowerOff
+        PowerOff,
+        VolumeStatus
     };
 
     Commands();
@@ -25,6 +26,7 @@ public:
 
 private:
     QString execute(const QString& command);
+    static QString volumeFrom(const QString& amixerOutput);
 
     QHash<QString, QString> m_commandToCommandLine;
 

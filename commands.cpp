@@ -3,6 +3,7 @@
 #include <boost/optional.hpp>
 #include <QDebug>
 #include <QProcess>
+#include <QRegExp>
 
 #include "utils.h"
 
@@ -27,17 +28,6 @@ boost::optional<QString> Commands::loadCommands()
     {
         m_commandToCommandLine.insert(command, commandsMap.value(command).toString());
     }
-    /*
-    for (const QString& key : radioMap.keys())
-    {
-        Station station;
-
-        QMap<QString, QVariant> stationMap = radioMap.value(key).toMap();
-        station.name = stationMap.value("name").toString();
-        station.stream = stationMap.value("stream").toString();
-        m_keyToStreams.insert(key, station);
-    }
-*/
 
     return boost::optional<QString>();
 }
@@ -56,6 +46,11 @@ QString Commands::executeCommand(CommandName commandName)
             execute(m_commandToCommandLine.value("volume_down"));
             break;
         }
+        case VolumeStatus:
+        {
+            return volumeFrom(execute(m_commandToCommandLine.value("volume_status")));
+            break;
+        }
         case Silence:
         {
             qDebug() << "Not implemented";
@@ -63,17 +58,36 @@ QString Commands::executeCommand(CommandName commandName)
         }
         case PowerOff:
         {
+            execute(m_commandToCommandLine.value("power_off"));
             break;
         }
     }
     return QString();
 }
 
+QString Commands::volumeFrom(const QString& amixerOutput)
+{
+    QRegExp rx("\\[(\\d{1,3})%\\]");
+
+    if (rx.indexIn(amixerOutput) > -1)
+    {
+        QString volume = rx.cap(1);
+        qDebug() << volume;
+        return volume;
+    }
+    return QString();
+}
+
+
 QString Commands::execute(const QString& commandLine)
 {
     QStringList args = commandLine.split(" ");
     QString executable = args.takeFirst();
-    QProcess::execute(executable, args);
 
-    return QString(); // TODO
+    QProcess process;
+    process.start(executable, args);
+    process.waitForFinished();
+
+    QString output(process.readAllStandardOutput());
+    return output;
 }
