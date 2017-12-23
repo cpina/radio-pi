@@ -3,8 +3,36 @@
 		"name": "Smooth FM",
 		"stream": "http://media-ice.musicradio.com/SmoothUKMP3?amsparams=playerid:UKRP;skey:1513640000;&amp;awparams=kxsegs:||;&amp;kuid="
 	},
+	"2": {
+		"name": "BBC 5 Live",
+		"stream": "http://www.listenlive.eu/bbc5live.m3u"
+	},
+	"3": {
+		"name": "TODO",
+		"stream": ""
+	},
+	"4": {
+		"name": "RAC1",
+		"stream": "http://rac1.radiocat.net"
+	},
 	"5": {
 		"name": "RAC 105",
 		"stream": "http://178.32.113.2:80/"
+	},
+	"6": {
+		"name": "Catalunya Informació",
+		"stream": "http://ccma-radioa-int-abertis-live.hls.adaptive.level3.net/int/mp4:catinform/media-ua9pt4c2x_2869.ts"
+	},
+	"7": {
+		"name": "",
+		"stream": ""
+	},
+	"8": {
+		"name": "",
+		"stream": ""
+	},
+	"9": {
+		"name": "",
+		"stream": ""
 	}
 }
