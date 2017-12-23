@@ -78,7 +78,6 @@ QString Commands::volumeFrom(const QString& amixerOutput)
     return QString();
 }
 
-
 QString Commands::execute(const QString& commandLine)
 {
     QStringList args = commandLine.split(" ");

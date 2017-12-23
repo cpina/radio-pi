@@ -6,17 +6,6 @@
 
 #include <QKeyEvent>
 
-void kill_mplayer()
-{
-    QProcess::execute("killall", QStringList{"mplayer"});
-}
-
-void mplayer(const QString& url)
-{
-    kill_mplayer();
-    QProcess::startDetached("mplayer", QStringList{url});
-}
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow)
@@ -40,13 +29,9 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
 {
     QString text = keyEvent->text();
 
-    QString stream = m_stations.stream(text);
-
-    if (!stream.isEmpty())
+    if (m_stations.play(text))
     {
         m_ui->Station->setText(m_stations.name(text));
-        mplayer(stream);
-        return;
     }
 
     switch (keyEvent->key())
@@ -74,6 +59,5 @@ void MainWindow::updateVolumeStatus()
 
 MainWindow::~MainWindow()
 {
-    kill_mplayer();
     delete m_ui;
 }
