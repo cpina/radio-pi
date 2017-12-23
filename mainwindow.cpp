@@ -29,9 +29,11 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
 {
     QString text = keyEvent->text();
 
-    if (m_stations.play(text))
+    if (!m_stations.stream(text).isEmpty())
     {
         m_ui->Station->setText(m_stations.name(text));
+        m_player.play(m_stations.stream(text));
+        return;
     }
 
     switch (keyEvent->key())

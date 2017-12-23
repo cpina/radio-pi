@@ -14,7 +14,6 @@ Stations::Stations()
 
 Stations::~Stations()
 {
-    stopPlaying();
 }
 
 QString Stations::stream(const QString& text)
@@ -33,7 +32,6 @@ QString Stations::name(const QString& text)
         return m_keyToStreams.value(text).name;
     }
     return QString();
-
 }
 
 boost::optional<QString> Stations::loadStations()
@@ -59,22 +57,4 @@ boost::optional<QString> Stations::loadStations()
     }
 
     return boost::optional<QString>();
-}
-
-bool Stations::play(const QString& stationName)
-{
-    if (!m_keyToStreams.contains(stationName))
-    {
-        return false;
-    }
-
-    QString stream = m_keyToStreams.value(stationName).stream;
-    stopPlaying();
-    QProcess::startDetached("mplayer", QStringList{stream});
-    return true;
-}
-
-void Stations::stopPlaying()
-{
-    QProcess::execute("killall", QStringList{"mplayer"});
 }

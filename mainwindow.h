@@ -5,6 +5,7 @@
 
 #include "stations.h"
 #include "commands.h"
+#include "player.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private:
     Ui::MainWindow *m_ui;
     Stations m_stations;
     Commands m_commands;
+    Player m_player;
 };
 
 #endif // MAINWINDOW_H
