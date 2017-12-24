@@ -30,11 +30,15 @@ private:
     void updateVolumeStatus();
     void changeToStation(const QString& text);
 
+    void nextRadioStation();
+    void previousRadioStation();
+
     Ui::MainWindow *m_ui;
     Stations m_stations;
     Commands m_commands;
     Player m_player;
     Settings m_settings;
+    int m_currentStation;
 };
 
 #endif // MAINWINDOW_H

@@ -40,6 +40,27 @@ void MainWindow::changeToStation(const QString& text)
     m_ui->Station->setText(m_stations.name(text));
     m_settings.writeString(Settings::StationNumber, text);
     m_player.play(m_stations.stream(text));
+    m_currentStation = text.toInt();
+}
+
+void MainWindow::nextRadioStation()
+{
+    m_currentStation++;
+    if (m_currentStation == 10)
+    {
+        m_currentStation = 1;
+    }
+    changeToStation(QString::number(m_currentStation));
+}
+
+void MainWindow::previousRadioStation()
+{
+    m_currentStation--;
+    if (m_currentStation == 0)
+    {
+        m_currentStation = 9;
+    }
+    changeToStation(QString::number(m_currentStation));
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
@@ -56,15 +77,31 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
     {
         case Qt::Key_Up:
         {
-            m_commands.executeCommand(Commands::VolumeUp);
-            updateVolumeStatus();
+            nextRadioStation();
             break;
         }
         case Qt::Key_Down:
         {
+            previousRadioStation();
+            break;
+        }
+        case Qt::Key_Right:
+        case 161:               // Volume-up in the remote. TODO: in the config file
+        {
+            m_commands.executeCommand(Commands::VolumeUp);
+            updateVolumeStatus();
+            break;
+        }
+        case Qt::Key_Left:
+        case 39:                // Volume-down in the remote. TODO: in the config file
+        {
             m_commands.executeCommand(Commands::VolumeDown);
             updateVolumeStatus();
             break;
+        }
+        default:
+        {
+            qDebug() << "Not found key:" << keyEvent->key();
         }
     }
 }
