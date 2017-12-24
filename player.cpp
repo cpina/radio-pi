@@ -6,21 +6,23 @@
 
 Player::Player(QObject* parent)
     :
-      QObject(parent),
-      m_player(new QProcess)
+      QObject(parent)
 {
-    connect(m_player.data(), SIGNAL(readyReadStandardOutput()),
-            this, SLOT(processMplayerOutput()));
 }
 
 Player::~Player()
 {
-
+    stopPlaying();
 }
 
 void Player::play(const QString &url)
 {
     stopPlaying();
+    m_player.reset(new QProcess);
+
+    connect(m_player.data(), SIGNAL(readyReadStandardOutput()),
+            this, SLOT(processMplayerOutput()));
+
     m_player->start("mplayer", QStringList{"--quiet", url});
     emit song(QString());
 }
@@ -53,6 +55,7 @@ void Player::stopPlaying()
     {
         m_player->kill();
         m_player->waitForFinished();
+        m_player.reset();
     }
 }
 
