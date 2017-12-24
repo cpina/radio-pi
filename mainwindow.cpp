@@ -12,6 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     m_ui->setupUi(this);
 
+
+    connect(&m_player, SIGNAL(song(QString)),
+            this, SLOT(changeSongName(QString)));
+
     QString error = m_stations.loadStations();
     if (!error.isEmpty())
     {
@@ -30,9 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString stationNumber = m_settings.readString(Settings::StationNumber);
     changeToStation(stationNumber);
-
-    connect(&m_player, SIGNAL(song(QString)),
-            this, SLOT(changeSongName(QString)));
 }
 
 void MainWindow::changeToStation(const QString& text)

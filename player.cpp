@@ -24,7 +24,7 @@ void Player::play(const QString &url)
             this, SLOT(processMplayerOutput()));
 
     m_player->start("mplayer", QStringList{"--quiet", url});
-    emit song(QString());
+    emit song("Loading...");
 }
 
 void Player::processMplayerOutput()
@@ -47,6 +47,14 @@ void Player::processMplayerOutput()
         QString name = rx.cap(1);
         emit song(name);
     }
+
+    rx = QRegExp("^AO:");
+    rx.setMinimal(true);
+    if (rx.indexIn(output) > -1)
+    {
+        emit song(QString());
+    }
+
 }
 
 void Player::stopPlaying()
