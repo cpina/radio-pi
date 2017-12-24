@@ -31,6 +31,24 @@ QString Commands::loadCommands()
     return QString();
 }
 
+QString Commands::executeCommand(CommandName commandName, int value)
+{
+    switch(commandName)
+    {
+        case SetVolume:
+        {
+            QString command = m_commandToCommandLine.value("set_volume");
+            command.replace("%d", QString(value));
+            return execute(command);
+        }
+        default:
+        {
+            Q_ASSERT(false);
+        }
+    }
+    return QString();
+}
+
 QString Commands::executeCommand(CommandName commandName)
 {
     switch(commandName)
@@ -45,7 +63,7 @@ QString Commands::executeCommand(CommandName commandName)
             execute(m_commandToCommandLine.value("volume_down"));
             break;
         }
-        case VolumeStatus:
+        case Volume:
         {
             return volumeFrom(execute(m_commandToCommandLine.value("volume_status")));
             break;
@@ -59,6 +77,10 @@ QString Commands::executeCommand(CommandName commandName)
         {
             execute(m_commandToCommandLine.value("power_off"));
             break;
+        }
+        default:
+        {
+            Q_ASSERT(false);
         }
     }
     return QString();

@@ -28,6 +28,7 @@ private Q_SLOTS:
 
 private:
     void updateVolumeStatus();
+    void changeToStation(const QString& text);
 
     Ui::MainWindow *m_ui;
     Stations m_stations;

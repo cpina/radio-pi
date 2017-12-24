@@ -13,7 +13,8 @@ public:
         VolumeDown,
         Silence,
         PowerOff,
-        VolumeStatus
+        Volume,
+        SetVolume
     };
 
     Commands();
@@ -21,6 +22,7 @@ public:
     QString loadCommands();
 
     QString executeCommand(CommandName commandName);
+    QString executeCommand(CommandName commandName, int value);
 
 private:
     QString execute(const QString& command);
