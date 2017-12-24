@@ -5,11 +5,11 @@
 	},
 	"2": {
 		"name": "BBC 5 Live",
-		"stream": "http://www.listenlive.eu/bbc5live.m3u"
+		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
 	},
 	"3": {
-		"name": "TODO",
-		"stream": ""
+		"name": "BBC 6 Music",
+		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
 	},
 	"4": {
 		"name": "RAC1",
@@ -20,16 +20,16 @@
 		"stream": "http://178.32.113.2:80/"
 	},
 	"6": {
-		"name": "Catalunya Informació",
-		"stream": "http://ccma-radioa-int-abertis-live.hls.adaptive.level3.net/int/mp4:catinform/media-ua9pt4c2x_2869.ts"
+		"name": "Catalunya Ràdio",
+		"stream": "http://www.catradio.cat/directes/catradio_http.m3u"
 	},
 	"7": {
-		"name": "",
-		"stream": ""
+		"name": "Radio Nacional España",
+		"stream": "http://rne.rtveradio.cires21.com/rne/mp3/icecast.audio"
 	},
 	"8": {
-		"name": "",
-		"stream": ""
+		"name": "Cadena SER",
+		"stream": "http://19373.live.streamtheworld.com/SER_BARCELONA.mp3"
 	},
 	"9": {
 		"name": "",
