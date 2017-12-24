@@ -2,5 +2,6 @@
 	"volume_up": "amixer -M set Master 5%+",
 	"volume_down": "amixer -M set Master 5%-",
 	"volume_status": "amixer -M get Master",
-	"power_off": "sudo halt"
+	"power_off": "sudo halt",
+	"set_volume": "amixer -M set Master %d%"
 }

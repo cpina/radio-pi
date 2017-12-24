@@ -38,7 +38,7 @@ QString Commands::executeCommand(CommandName commandName, int value)
         case SetVolume:
         {
             QString command = m_commandToCommandLine.value("set_volume");
-            command.replace("%d", QString(value));
+            command.replace("%d", QString::number(value));
             return execute(command);
         }
         default:
