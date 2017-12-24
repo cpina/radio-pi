@@ -39,7 +39,10 @@ QString Commands::executeCommand(CommandName commandName, int value)
         {
             QString command = m_commandToCommandLine.value("set_volume");
             command.replace("%d", QString::number(value));
-            return execute(command);
+            execute(command);
+
+            execute(m_commandToCommandLine.value("unmute"));
+            return QString();
         }
         default:
         {
@@ -53,24 +56,9 @@ QString Commands::executeCommand(CommandName commandName)
 {
     switch(commandName)
     {
-        case VolumeUp:
+        case Mute:
         {
-            execute(m_commandToCommandLine.value("volume_up"));
-            break;
-        }
-        case VolumeDown:
-        {
-            execute(m_commandToCommandLine.value("volume_down"));
-            break;
-        }
-        case Volume:
-        {
-            return volumeFrom(execute(m_commandToCommandLine.value("volume_status")));
-            break;
-        }
-        case Silence:
-        {
-            qDebug() << "Not implemented";
+            return volumeFrom(execute(m_commandToCommandLine.value("mute")));
             break;
         }
         case PowerOff:

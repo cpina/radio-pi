@@ -33,12 +33,15 @@ private:
     void nextRadioStation();
     void previousRadioStation();
 
+    void changeVolume(int percentage);
+
     Ui::MainWindow *m_ui;
     Stations m_stations;
     Commands m_commands;
     Player m_player;
     Settings m_settings;
     int m_currentStation;
+    int m_currentVolume;
 };
 
 #endif // MAINWINDOW_H

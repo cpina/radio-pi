@@ -9,9 +9,7 @@ class Commands
 public:
     enum CommandName
     {
-        VolumeUp,
-        VolumeDown,
-        Silence,
+        Mute,
         PowerOff,
         Volume,
         SetVolume

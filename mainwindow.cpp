@@ -24,8 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
         m_ui->Station->setText(error);
     }
 
-    int volume = m_settings.readInt(Settings::Volume);
-    m_commands.executeCommand(Commands::SetVolume, volume);
+    m_currentVolume = m_settings.readInt(Settings::Volume);
+    changeVolume(0);
     updateVolumeStatus();
 
     QString stationNumber = m_settings.readString(Settings::StationNumber);
@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::changeToStation(const QString& text)
 {
+    qDebug() << "Changing to station:" << text;
     m_ui->Station->setText(m_stations.name(text));
     m_settings.writeString(Settings::StationNumber, text);
     m_player.play(m_stations.stream(text));
@@ -63,6 +64,27 @@ void MainWindow::previousRadioStation()
     changeToStation(QString::number(m_currentStation));
 }
 
+void MainWindow::changeVolume(int percentage)
+{
+    m_currentVolume += percentage;
+
+    if (m_currentVolume > 100)
+    {
+        m_currentVolume = 100;
+    }
+    else if (m_currentVolume < 0)
+    {
+        m_currentVolume = 0;
+    }
+
+    m_commands.executeCommand(Commands::SetVolume, m_currentVolume);
+    if (m_currentVolume == 0)
+    {
+        m_commands.executeCommand(Commands::Mute);
+    }
+    updateVolumeStatus();
+}
+
 void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
 {
     QString text = keyEvent->text();
@@ -87,16 +109,16 @@ void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
         }
         case Qt::Key_Right:
         case 161:               // Volume-up in the remote. TODO: in the config file
+        case 61:                // Volume-up in the remote in the Raspberrypi
         {
-            m_commands.executeCommand(Commands::VolumeUp);
-            updateVolumeStatus();
+            changeVolume(5);
             break;
         }
         case Qt::Key_Left:
         case 39:                // Volume-down in the remote. TODO: in the config file
+        case 45:                // Volume-up in the remote in the Raspberrypi
         {
-            m_commands.executeCommand(Commands::VolumeDown);
-            updateVolumeStatus();
+            changeVolume(-5);
             break;
         }
         default:
@@ -113,9 +135,8 @@ void MainWindow::changeSongName(const QString &songName)
 
 void MainWindow::updateVolumeStatus()
 {
-    QString volume = m_commands.executeCommand(Commands::Volume);
-    m_ui->Volume->setText(QString("%1 %").arg(volume));
-    m_settings.writeInt(Settings::Volume, volume.toInt());
+    m_ui->Volume->setText(QString("%1 %").arg(m_currentVolume));
+    m_settings.writeInt(Settings::Volume, m_currentVolume);
 }
 
 MainWindow::~MainWindow()
