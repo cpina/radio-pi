@@ -23,6 +23,14 @@ private Q_SLOTS:
     void processMplayerOutput();
 
 private:
+    // calls start() method from m_player
+    void startAndLog(const QString& programName, const QStringList& arguments);
+
+    // calls QProcess::execute
+    static void executeAndLog(const QString& programName, const QStringList& arguments);
+
+    static QString argumentsToString(const QStringList& arguments);
+
     QScopedPointer<QProcess> m_player;
 };
 
