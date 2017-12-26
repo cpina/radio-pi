@@ -55,34 +55,41 @@ void Player::executeAndLog(const QString& programName, const QStringList& argume
     QProcess::execute(programName, arguments);
 }
 
+QString Player::findSongName(const QStringList& regExps, const QString& mplayerOutput)
+{
+    for(const QString& regularExpression: regExps)
+    {
+        QRegExp rx(regularExpression);
+        rx.setMinimal(true);
+        if (rx.indexIn(mplayerOutput) > -1)
+        {
+            QString name = rx.cap(1);
+            return name;
+        }
+    }
+
+    return QString();
+}
+
 void Player::processMplayerOutput()
 {
     QString output = m_player->readAllStandardOutput();
 
-    QRegExp rx("icy-title: (.*)\n");
-    rx.setMinimal(true);
-
-    if (rx.indexIn(output) > -1)
+    QString songName = findSongName(QStringList{"icy-title: (.*)\n",
+                                                "ICY Info: StreamTitle='(.*)';"}, output);
+    if (!songName.isEmpty())
     {
-        QString name = rx.cap(1);
-        emit song(name);
+        emit song(songName);
+        return;
     }
 
-    rx = QRegExp("ICY Info: StreamTitle='(.*)';");
-    rx.setMinimal(true);
-    if (rx.indexIn(output) > -1)
-    {
-        QString name = rx.cap(1);
-        emit song(name);
-    }
-
-    rx = QRegExp("^AO:");
-    rx.setMinimal(true);
-    if (rx.indexIn(output) > -1)
+    // Initially it shows "Loading...", now there is some output
+    // so we remove "Loading..."
+    QString loaded = findSongName(QStringList{"^AO:(.*)"}, output);
+    if (!loaded.isEmpty())
     {
         emit song(QString());
     }
-
 }
 
 void Player::stopPlaying()
