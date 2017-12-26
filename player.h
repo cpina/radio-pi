@@ -30,7 +30,7 @@ private:
     static void executeAndLog(const QString& programName, const QStringList& arguments);
 
     static QString argumentsToString(const QStringList& arguments);
-    static QString findSongName(const QStringList &regExps, const QString& mplayerOutput);
+    static QString findRegularExpression(const QStringList &regExps, const QString& mplayerOutput);
 
     QScopedPointer<QProcess> m_player;
 };

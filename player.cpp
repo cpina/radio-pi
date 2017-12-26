@@ -55,7 +55,7 @@ void Player::executeAndLog(const QString& programName, const QStringList& argume
     QProcess::execute(programName, arguments);
 }
 
-QString Player::findSongName(const QStringList& regExps, const QString& mplayerOutput)
+QString Player::findRegularExpression(const QStringList& regExps, const QString& mplayerOutput)
 {
     for(const QString& regularExpression: regExps)
     {
@@ -75,7 +75,7 @@ void Player::processMplayerOutput()
 {
     QString output = m_player->readAllStandardOutput();
 
-    QString songName = findSongName(QStringList{"icy-title: (.*)\n",
+    QString songName = findRegularExpression(QStringList{"icy-title: (.*)\n",
                                                 "ICY Info: StreamTitle='(.*)';"}, output);
     if (!songName.isEmpty())
     {
@@ -85,7 +85,7 @@ void Player::processMplayerOutput()
 
     // Initially it shows "Loading...", now there is some output
     // so we remove "Loading..."
-    QString loaded = findSongName(QStringList{"^AO:(.*)"}, output);
+    QString loaded = findRegularExpression(QStringList{"^AO:(.*)"}, output);
     if (!loaded.isEmpty())
     {
         emit song(QString());
