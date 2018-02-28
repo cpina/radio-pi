@@ -66,6 +66,22 @@ void MainWindow::setupInputHandling()
 
     connect(&m_inputHandling, SIGNAL(stationDown()),
             this, SLOT(previousRadioStation()));
+
+    connect(&m_inputHandling, SIGNAL(volumeUp()),
+            this, SLOT(volumeUp()));
+
+    connect(&m_inputHandling, SIGNAL(volumeDown()),
+            this, SLOT(volumeDown()));
+}
+
+void MainWindow::volumeUp()
+{
+    changeVolume(5);
+}
+
+void MainWindow::volumeDown()
+{
+    changeVolume(-5);
 }
 
 void MainWindow::previousRadioStation()

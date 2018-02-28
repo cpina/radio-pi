@@ -28,9 +28,11 @@ Q_SIGNALS:
     void volumeDown();
 
 private:
+    using SignalType = decltype(&InputHandling::stationUp);
+
     QString loadKeys();
-    QHash<Qt::Key, QString> m_keyToSignal;
-    QHash<QString, QString> m_signalName;
+    QHash<Qt::Key, SignalType> m_keyToSignal;
+    QHash<QString, SignalType> m_stringToSignal;
 };
 
 #endif // INPUTHANDLING_H

@@ -28,6 +28,9 @@ private Q_SLOTS:
     void nextRadioStation();
     void previousRadioStation();
 
+    void volumeUp();
+    void volumeDown();
+
 private:
     void setupInputHandling();
 
