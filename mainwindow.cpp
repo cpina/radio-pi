@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString stationNumber = m_settings.readString(Settings::StationNumber);
     changeToStation(stationNumber);
+
+    updateVolumeStatus(m_volume.currentVolume());
 }
 
 void MainWindow::changeToStation(const QString& text)

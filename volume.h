@@ -14,6 +14,8 @@ public:
     Volume(QObject* parent = 0);
     ~Volume();
 
+    int currentVolume() const;
+
 public Q_SLOTS:
     void volumeUp();
     void volumeDown();
@@ -26,7 +28,7 @@ private:
      * static QString volumeFrom(const QString& amixerOutput);
      */
 
-    void changeVolume(int percentage);
+    void changeVolume(int volume);
 
     int m_currentVolume;
 
