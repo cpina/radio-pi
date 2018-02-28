@@ -4,6 +4,9 @@ Volume::Volume(QObject *parent)
     :
     QObject(parent)
 {
+    // TODO: check errors and report
+    m_commands.loadCommands();
+
     m_currentVolume = m_settings.readInt(Settings::Volume);
     changeVolume(m_currentVolume);
 }

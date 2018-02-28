@@ -54,12 +54,6 @@ QString InputHandling::loadKeys()
                 // The key in the configuration file was a QString very likely representing a Qt::Key
                 QMetaEnum metaEnum = QMetaEnum::fromType<Qt::Key>();
 
-                key = static_cast<Qt::Key>(metaEnum.keyToValue("Key_Right", &ok));
-
-                qDebug() << "Key_Right";
-                qDebug() << configurationKey;
-
-
                 key = static_cast<Qt::Key>(metaEnum.keyToValue(configurationKey.toString().toUtf8().constData(), &ok));
 
                 if (ok)
@@ -96,6 +90,7 @@ bool InputHandling::eventFilter(QObject* object, QEvent* event)
     }
 
     Qt::Key key = static_cast<Qt::Key>(keyEvent->key());
+    qDebug() << "==== key:" << key;
     if (m_keyToSignal.contains(key))
     {
         SignalType signalName = m_keyToSignal.value(key);
