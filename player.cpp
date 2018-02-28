@@ -74,6 +74,7 @@ QString Player::findRegularExpression(const QStringList& regExps, const QString&
 void Player::processMplayerOutput()
 {
     QString output = m_player->readAllStandardOutput();
+    qDebug() << "Output:" << output;
 
     QString songName = findRegularExpression(QStringList{"icy-title: (.*)\n",
                                                 "ICY Info: StreamTitle='(.*)';"}, output);
@@ -85,8 +86,10 @@ void Player::processMplayerOutput()
 
     // Initially it shows "Loading...", now there is some output
     // so we remove "Loading..."
-    QString loaded = findRegularExpression(QStringList{"^AO:(.*)"}, output);
-    if (!loaded.isEmpty())
+
+    // \\n is included because findRegularExpression uses QRegExp::setMinimal(true);
+    QString audioOutputLine = findRegularExpression(QStringList{"^AO:(.*)\\n"}, output);
+    if (!audioOutputLine.isEmpty())
     {
         emit song(QString());
     }

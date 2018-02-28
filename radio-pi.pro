@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     volume.cpp \
     commands.cpp \
     utils.cpp \
-    settings.cpp
+    settings.cpp \
+    inputhandling.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -43,6 +44,7 @@ HEADERS  += mainwindow.h \
     volume.h \
     commands.h \
     utils.h \
-    settings.h
+    settings.h \
+    inputhandling.h
 
 FORMS    += mainwindow.ui

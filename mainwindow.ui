@@ -16,14 +16,14 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="ErrorMessage">
+     <widget class="QLabel" name="errorMessage">
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="Station">
+     <widget class="QLabel" name="station">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -43,7 +43,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="Song">
+       <widget class="QLabel" name="song">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -56,7 +56,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="Volume">
+       <widget class="QLabel" name="volume">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>

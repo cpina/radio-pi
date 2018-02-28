@@ -7,6 +7,7 @@
 #include "commands.h"
 #include "player.h"
 #include "settings.h"
+#include "inputhandling.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,18 +21,17 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-protected:
-    void keyPressEvent(QKeyEvent* keyEvent);
-
 private Q_SLOTS:
     void changeSongName(const QString& songName);
-
-private:
-    void updateVolumeStatus();
     void changeToStation(const QString& text);
 
     void nextRadioStation();
     void previousRadioStation();
+
+private:
+    void setupInputHandling();
+
+    void updateVolumeStatus();
 
     void changeVolume(int percentage);
 
@@ -40,6 +40,8 @@ private:
     Commands m_commands;
     Player m_player;
     Settings m_settings;
+    InputHandling m_inputHandling;
+
     int m_currentStation;
     int m_currentVolume;
 };

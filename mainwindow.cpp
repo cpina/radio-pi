@@ -4,14 +4,13 @@
 #include <QProcess>
 #include <QDebug>
 
-#include <QKeyEvent>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
 
+    setupInputHandling();
 
     connect(&m_player, SIGNAL(song(QString)),
             this, SLOT(changeSongName(QString)));
@@ -19,13 +18,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QString error = m_stations.loadStations();
     if (!error.isEmpty())
     {
-        m_ui->Station->setText(error);
+        m_ui->station->setText(error);
     }
 
     error = m_commands.loadCommands();
     if (!error.isEmpty())
     {
-        m_ui->Station->setText(error);
+        m_ui->station->setText(error);
     }
 
     m_currentVolume = m_settings.readInt(Settings::Volume);
@@ -39,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::changeToStation(const QString& text)
 {
     qDebug() << "Changing to station:" << text;
-    m_ui->Station->setText(m_stations.name(text));
+    m_ui->station->setText(m_stations.name(text));
     m_settings.writeString(Settings::StationNumber, text);
     m_player.play(m_stations.stream(text));
     m_currentStation = text.toInt();
@@ -53,6 +52,20 @@ void MainWindow::nextRadioStation()
         m_currentStation = 1;
     }
     changeToStation(QString::number(m_currentStation));
+}
+
+void MainWindow::setupInputHandling()
+{
+    installEventFilter(&m_inputHandling);
+
+    connect(&m_inputHandling, SIGNAL(changeToStation(QString)),
+            this, SLOT(changeToStation(QString)));
+
+    connect(&m_inputHandling, SIGNAL(stationUp()),
+            this, SLOT(nextRadioStation()));
+
+    connect(&m_inputHandling, SIGNAL(stationDown()),
+            this, SLOT(previousRadioStation()));
 }
 
 void MainWindow::previousRadioStation()
@@ -86,57 +99,14 @@ void MainWindow::changeVolume(int percentage)
     updateVolumeStatus();
 }
 
-void MainWindow::keyPressEvent(QKeyEvent* keyEvent)
-{
-    QString text = keyEvent->text();
-
-    if (!m_stations.stream(text).isEmpty())
-    {
-        changeToStation(text);
-        return;
-    }
-
-    switch (keyEvent->key())
-    {
-        case Qt::Key_Up:
-        {
-            nextRadioStation();
-            break;
-        }
-        case Qt::Key_Down:
-        {
-            previousRadioStation();
-            break;
-        }
-        case Qt::Key_Right:
-        case 161:               // Volume-up in the remote. TODO: in the config file
-        case 61:                // Volume-up in the remote in the Raspberrypi
-        {
-            changeVolume(5);
-            break;
-        }
-        case Qt::Key_Left:
-        case 39:                // Volume-down in the remote. TODO: in the config file
-        case 45:                // Volume-up in the remote in the Raspberrypi
-        {
-            changeVolume(-5);
-            break;
-        }
-        default:
-        {
-            qDebug() << "Not found key:" << keyEvent->key();
-        }
-    }
-}
-
 void MainWindow::changeSongName(const QString &songName)
 {
-    m_ui->Song->setText(songName);
+    m_ui->song->setText(songName);
 }
 
 void MainWindow::updateVolumeStatus()
 {
-    m_ui->Volume->setText(QString("%1 %").arg(m_currentVolume));
+    m_ui->volume->setText(QString("%1 %").arg(m_currentVolume));
     m_settings.writeInt(Settings::Volume, m_currentVolume);
 }
 
