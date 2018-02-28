@@ -8,7 +8,6 @@
 
 Commands::Commands()
 {
-
 }
 
 QString Commands::loadCommands()

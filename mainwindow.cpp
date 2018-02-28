@@ -27,10 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
         m_ui->station->setText(error);
     }
 
-    m_currentVolume = m_settings.readInt(Settings::Volume);
-    changeVolume(0);
-    updateVolumeStatus();
-
     QString stationNumber = m_settings.readString(Settings::StationNumber);
     changeToStation(stationNumber);
 }
@@ -68,20 +64,13 @@ void MainWindow::setupInputHandling()
             this, SLOT(previousRadioStation()));
 
     connect(&m_inputHandling, SIGNAL(volumeUp()),
-            this, SLOT(volumeUp()));
+            &m_volume, SLOT(volumeUp()));
 
     connect(&m_inputHandling, SIGNAL(volumeDown()),
-            this, SLOT(volumeDown()));
-}
+            &m_volume, SLOT(volumeDown()));
 
-void MainWindow::volumeUp()
-{
-    changeVolume(5);
-}
-
-void MainWindow::volumeDown()
-{
-    changeVolume(-5);
+    connect(&m_volume, SIGNAL(volumeChanged(int)),
+            this, SLOT(updateVolumeStatus(int)));
 }
 
 void MainWindow::previousRadioStation()
@@ -94,36 +83,14 @@ void MainWindow::previousRadioStation()
     changeToStation(QString::number(m_currentStation));
 }
 
-void MainWindow::changeVolume(int percentage)
-{
-    m_currentVolume += percentage;
-
-    if (m_currentVolume > 100)
-    {
-        m_currentVolume = 100;
-    }
-    else if (m_currentVolume < 0)
-    {
-        m_currentVolume = 0;
-    }
-
-    m_commands.executeCommand(Commands::SetVolume, m_currentVolume);
-    if (m_currentVolume == 0)
-    {
-        m_commands.executeCommand(Commands::Mute);
-    }
-    updateVolumeStatus();
-}
-
 void MainWindow::changeSongName(const QString &songName)
 {
     m_ui->song->setText(songName);
 }
 
-void MainWindow::updateVolumeStatus()
+void MainWindow::updateVolumeStatus(int volume)
 {
-    m_ui->volume->setText(QString("%1 %").arg(m_currentVolume));
-    m_settings.writeInt(Settings::Volume, m_currentVolume);
+    m_ui->volume->setText(QString("%1 %").arg(volume));
 }
 
 MainWindow::~MainWindow()

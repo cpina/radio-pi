@@ -27,7 +27,6 @@ private:
     static QString volumeFrom(const QString& amixerOutput);
 
     QHash<QString, QString> m_commandToCommandLine;
-
 };
 
 #endif // COMMANDS_H

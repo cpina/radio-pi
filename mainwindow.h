@@ -7,6 +7,7 @@
 #include "commands.h"
 #include "player.h"
 #include "settings.h"
+#include "volume.h"
 #include "inputhandling.h"
 
 namespace Ui {
@@ -28,25 +29,21 @@ private Q_SLOTS:
     void nextRadioStation();
     void previousRadioStation();
 
-    void volumeUp();
-    void volumeDown();
+    void updateVolumeStatus(int volume);
+
 
 private:
     void setupInputHandling();
-
-    void updateVolumeStatus();
-
-    void changeVolume(int percentage);
 
     Ui::MainWindow *m_ui;
     Stations m_stations;
     Commands m_commands;
     Player m_player;
+    Volume m_volume;
     Settings m_settings;
     InputHandling m_inputHandling;
 
     int m_currentStation;
-    int m_currentVolume;
 };
 
 #endif // MAINWINDOW_H
