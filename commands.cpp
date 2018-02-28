@@ -57,7 +57,7 @@ QString Commands::executeCommand(CommandName commandName)
     {
         case Mute:
         {
-            return volumeFrom(execute(m_commandToCommandLine.value("mute")));
+            return execute(m_commandToCommandLine.value("mute"));
             break;
         }
         case PowerOff:
@@ -69,18 +69,6 @@ QString Commands::executeCommand(CommandName commandName)
         {
             Q_ASSERT(false);
         }
-    }
-    return QString();
-}
-
-QString Commands::volumeFrom(const QString& amixerOutput)
-{
-    QRegExp rx("\\[(\\d{1,3})%\\]");
-
-    if (rx.indexIn(amixerOutput) > -1)
-    {
-        QString volume = rx.cap(1);
-        return volume;
     }
     return QString();
 }

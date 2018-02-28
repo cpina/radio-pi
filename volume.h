@@ -22,6 +22,10 @@ Q_SIGNALS:
     void volumeChanged(int volume);
 
 private:
+    /* Unnused
+     * static QString volumeFrom(const QString& amixerOutput);
+     */
+
     void changeVolume(int percentage);
 
     int m_currentVolume;
