@@ -1,6 +1,7 @@
 #ifndef INPUTHANDLING_H
 #define INPUTHANDLING_H
 
+#include <QTimer>
 #include <QObject>
 #include <QHash>
 
@@ -27,12 +28,18 @@ Q_SIGNALS:
     void volumeUp();
     void volumeDown();
 
+private Q_SLOTS:
+    void finishedWritingStationNumber();
+
 private:
     using SignalType = decltype(&InputHandling::stationUp);
 
     QString loadKeys();
     QHash<Qt::Key, SignalType> m_keyToSignal;
     QHash<QString, SignalType> m_stringToSignal;
+
+    QString m_currentInput;
+    QTimer m_waitForKeys;
 };
 
 #endif // INPUTHANDLING_H

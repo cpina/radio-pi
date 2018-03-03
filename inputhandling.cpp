@@ -15,7 +15,17 @@ InputHandling::InputHandling(QObject *parent)
     m_stringToSignal.insert("volume_up", &InputHandling::volumeUp);
     m_stringToSignal.insert("volume_down", &InputHandling::volumeDown);
 
+    m_waitForKeys.setInterval(1000);
+    m_waitForKeys.setSingleShot(true);
+    connect(&m_waitForKeys, SIGNAL(timeout()), this, SLOT(finishedWritingStationNumber()));
+
     loadKeys();
+}
+
+void InputHandling::finishedWritingStationNumber()
+{
+    emit changeToStation(m_currentInput);
+    m_currentInput.clear();
 }
 
 QString InputHandling::loadKeys()
@@ -84,8 +94,8 @@ bool InputHandling::eventFilter(QObject* object, QEvent* event)
     text.toInt(&ok);
     if (ok)
     {
-        // It's a simple number change to the station
-        emit changeToStation(text);
+        m_currentInput.append(text);
+        m_waitForKeys.start();
         return true;
     }
 
