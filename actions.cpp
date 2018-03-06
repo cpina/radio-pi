@@ -36,7 +36,7 @@ QString Actions::loadActions()
         }
         else if (action.contains("command"))
         {
-            Commands::CommandName commandName = Commands::fromString(action.value("command").toString());
+            Commands::Command commandName = Commands::fromString(action.value("command").toString());
 
             QVariant variant;
             variant.setValue(commandName);

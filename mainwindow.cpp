@@ -48,9 +48,9 @@ void MainWindow::changeToStation(const QString& text)
         m_currentStation = text.toInt();
         m_player.play(station.stream);
     }
-    else if (action.canConvert<Commands::CommandName>())
+    else if (action.canConvert<Commands::Command>())
     {
-        Commands::CommandName commandName = action.value<Commands::CommandName>();
+        Commands::Command commandName = action.value<Commands::Command>();
         m_commands.executeCommand(commandName);
     }
     else

@@ -10,7 +10,7 @@ class Commands : public QObject
     Q_OBJECT
 
 public:
-    enum CommandName
+    enum Command
     {
         Undefined,
         Mute,
@@ -18,17 +18,17 @@ public:
         Volume,
         SetVolume
     };
-    Q_ENUM(CommandName)
+    Q_ENUM(Command)
 
     Commands(QObject* parent = 0);
     ~Commands();
 
     QString loadCommands();
 
-    QString executeCommand(CommandName commandName);
-    QString executeCommand(CommandName commandName, int value);
+    QString executeCommand(Command commandName);
+    QString executeCommand(Command commandName, int value);
 
-    static CommandName fromString(const QString& command);
+    static Command fromString(const QString& command);
 
 private:
     QString execute(const QString& command);

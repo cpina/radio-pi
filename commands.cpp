@@ -36,7 +36,7 @@ QString Commands::loadCommands()
     return QString();
 }
 
-QString Commands::executeCommand(CommandName commandName, int value)
+QString Commands::executeCommand(Command commandName, int value)
 {
     switch(commandName)
     {
@@ -57,7 +57,7 @@ QString Commands::executeCommand(CommandName commandName, int value)
     return QString();
 }
 
-Commands::CommandName Commands::fromString(const QString &command)
+Commands::Command Commands::fromString(const QString &command)
 {
     // TODO refactor
     if (command == "power_off")
@@ -70,7 +70,7 @@ Commands::CommandName Commands::fromString(const QString &command)
     }
 }
 
-QString Commands::executeCommand(CommandName commandName)
+QString Commands::executeCommand(Command commandName)
 {
     switch(commandName)
     {
