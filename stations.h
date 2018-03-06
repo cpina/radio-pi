@@ -14,16 +14,6 @@ public:
         QString name;
         QString stream;
     };
-
-    Stations();
-    ~Stations();
-
-    QString loadStations();
-    QString stream(const QString& text);
-    QString name(const QString& text);
-
-private:
-    QHash<QString, Station> m_keyToStreams;
 };
 
 Q_DECLARE_METATYPE(Stations::Station)
