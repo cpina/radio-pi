@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
         m_ui->station->setText(error);
     }
 
+    m_inputHandling.setPossibleNumbers(m_actions.numbers());
     QString stationNumber = m_settings.readString(Settings::StationNumber);
     changeToStation(stationNumber);
 

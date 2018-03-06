@@ -11,7 +11,9 @@ public:
     Actions();
 
     QString loadActions();
-    QVariant action(const QString& key);
+    QVariant action(const QString& key) const;
+
+    QSet<QString> numbers() const;
 
 private:
     QHash<QString, QVariant> m_keyToAction;

@@ -9,7 +9,7 @@ https://wiki.qt.io/RaspberryPi2EGLFS
 
 Note the step that I sometimes need to do again (because ~/raspi-qt in my system is a symbolic link to an external file system):
 
-Go to Options -> Compilers
+Go to Tools -> Options -> Build&Run -> Compilers
   Add
     GCC
     Compiler path: ~/raspi-qt/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++

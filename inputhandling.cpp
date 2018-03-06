@@ -23,10 +23,36 @@ InputHandling::InputHandling(QObject *parent)
     loadKeys();
 }
 
+void InputHandling::setPossibleNumbers(const QSet<QString>& numbers)
+{
+    m_possibleNumbers = numbers;
+}
+
+int InputHandling::startsWith(const QString& text)
+{
+    int count = 0;
+
+    for (const QString& number : m_possibleNumbers)
+    {
+        if (number.startsWith(text))
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
 void InputHandling::finishedWritingStationNumber()
 {
-    emit changeToStation(m_currentInput);
-    m_currentInput.clear();
+    if (m_possibleNumbers.contains(m_currentInput))
+    {
+        emit changeToStation(m_currentInput);
+        m_currentInput.clear();
+    }
+    else
+    {
+        m_currentInput.clear();
+    }
 }
 
 QString InputHandling::loadKeys()
@@ -96,9 +122,35 @@ bool InputHandling::eventFilter(QObject* object, QEvent* event)
     if (ok)
     {
         m_currentInput.append(text);
-        m_waitForKeys.start();
-        return true;
+
+        int startsWithCount = startsWith(m_currentInput);
+
+        if (startsWithCount == 0)
+        {
+            m_currentInput.clear();
+            return true;
+        }
+        else if (startsWithCount == 1)
+        {
+            emit changeToStation(m_currentInput);
+            m_currentInput.clear();
+            return true;
+        }
+        else if (startsWithCount > 1)
+        {
+            m_waitForKeys.start();
+            return true;
+        }
+
     }
+
+    if (startsWith(m_currentInput) == 0)
+    {
+        m_currentInput.clear();
+    }
+    m_waitForKeys.start();
+    return true;
+
 
     Qt::Key key = static_cast<Qt::Key>(keyEvent->key());
     qDebug() << "==== key:" << key;

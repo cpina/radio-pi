@@ -51,7 +51,12 @@ QString Actions::loadActions()
     return QString();
 }
 
-QVariant Actions::action(const QString& key)
+QVariant Actions::action(const QString& key) const
 {
     return m_keyToAction.value(key);
+}
+
+QSet<QString> Actions::numbers() const
+{
+    return m_keyToAction.keys().toSet();
 }
