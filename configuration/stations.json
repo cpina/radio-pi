@@ -35,8 +35,7 @@
 		"name": "",
 		"stream": ""
 	},
-	"10": {
-		"name": "Test it works!",
-		"stream": "http://178.32.113.2:80/"
+	"99": {
+		"command": "power_off"
 	}
 }

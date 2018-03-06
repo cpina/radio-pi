@@ -14,6 +14,7 @@ InputHandling::InputHandling(QObject *parent)
     m_stringToSignal.insert("change_station_down", &InputHandling::stationDown);
     m_stringToSignal.insert("volume_up", &InputHandling::volumeUp);
     m_stringToSignal.insert("volume_down", &InputHandling::volumeDown);
+    m_stringToSignal.insert("power_off", &InputHandling::powerOff);
 
     m_waitForKeys.setInterval(1000);
     m_waitForKeys.setSingleShot(true);

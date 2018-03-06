@@ -51,6 +51,19 @@ QString Commands::executeCommand(CommandName commandName, int value)
     return QString();
 }
 
+Commands::CommandName Commands::fromString(const QString &command)
+{
+    // TODO refactor
+    if (command == "power_off")
+    {
+        return PowerOff;
+    }
+    else
+    {
+        return Undefined;
+    }
+}
+
 QString Commands::executeCommand(CommandName commandName)
 {
     switch(commandName)
@@ -79,6 +92,7 @@ QString Commands::execute(const QString& commandLine)
     QString executable = args.takeFirst();
 
     QProcess process;
+    qDebug() << "Executing:" << executable << args;
     process.start(executable, args);
     process.waitForFinished();
 

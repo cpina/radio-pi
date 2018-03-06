@@ -21,11 +21,11 @@ public:
     QString loadStations();
     QString stream(const QString& text);
     QString name(const QString& text);
-    bool play(const QString& stationName);
-    void stopPlaying();
 
 private:
     QHash<QString, Station> m_keyToStreams;
 };
+
+Q_DECLARE_METATYPE(Stations::Station)
 
 #endif // STATIONS_H

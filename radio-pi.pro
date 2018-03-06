@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     commands.cpp \
     utils.cpp \
     settings.cpp \
-    inputhandling.cpp
+    inputhandling.cpp \
+    actions.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -45,6 +46,7 @@ HEADERS  += mainwindow.h \
     commands.h \
     utils.h \
     settings.h \
-    inputhandling.h
+    inputhandling.h \
+    actions.h
 
 FORMS    += mainwindow.ui

@@ -28,6 +28,8 @@ Q_SIGNALS:
     void volumeUp();
     void volumeDown();
 
+    void powerOff();
+
 private Q_SLOTS:
     void finishedWritingStationNumber();
 

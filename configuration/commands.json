@@ -1,6 +1,6 @@
 {
 	"volume_status": "amixer -M get Master",
-	"power_off": "sudo halt",
+	"power_off": "echo test >> /tmp/test.txt",
 	"set_volume": "amixer -M set Master %d%",
 	"mute": "amixer -M set Master mute",
 	"unmute": "amixer -M set Master unmute"

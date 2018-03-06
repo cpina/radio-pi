@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "actions.h"
 #include "stations.h"
 #include "commands.h"
 #include "player.h"
@@ -36,7 +37,7 @@ private:
     void setupInputHandling();
 
     Ui::MainWindow *m_ui;
-    Stations m_stations;
+    Actions m_actions;
     Commands m_commands;
     Player m_player;
     Volume m_volume;

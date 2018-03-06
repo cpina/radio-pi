@@ -15,13 +15,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&m_player, SIGNAL(song(QString)),
             this, SLOT(changeSongName(QString)));
 
-    QString error = m_stations.loadStations();
+    QString error = m_commands.loadCommands();
     if (!error.isEmpty())
     {
         m_ui->station->setText(error);
     }
 
-    error = m_commands.loadCommands();
+    error = m_actions.loadActions();
     if (!error.isEmpty())
     {
         m_ui->station->setText(error);
@@ -36,10 +36,26 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::changeToStation(const QString& text)
 {
     qDebug() << "Changing to station:" << text;
-    m_ui->station->setText(m_stations.name(text));
-    m_settings.writeString(Settings::StationNumber, text);
-    m_player.play(m_stations.stream(text));
-    m_currentStation = text.toInt();
+
+    QVariant action = m_actions.action(text);
+
+    if (action.canConvert<Stations::Station>())
+    {
+        Stations::Station station = action.value<Stations::Station>();
+        QString stationName = station.name;
+        m_ui->station->setText(stationName);
+        m_settings.writeString(Settings::StationNumber, text);
+        m_currentStation = text.toInt();
+        m_player.play(station.stream);
+    }
+    else if (action.canConvert<Commands::CommandName>())
+    {
+        qDebug() << "SSSSSSSSSSSSSSSSSSSUPER!";
+    }
+    else
+    {
+        Q_ASSERT(false);
+    }
 }
 
 void MainWindow::nextRadioStation()
