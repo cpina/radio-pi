@@ -1,0 +1,6 @@
+{
+	"change_station_up": ["Key_Up"],
+	"change_station_down": ["Key_Down"],
+	"volume_up": ["Key_Right", 161, 61],
+	"volume_down": ["Key_Left", 39, 45]
+}
