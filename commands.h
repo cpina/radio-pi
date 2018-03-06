@@ -5,8 +5,10 @@
 #include <QHash>
 #include <QObject>
 
-class Commands
+class Commands : public QObject
 {
+    Q_OBJECT
+
 public:
     enum CommandName
     {
@@ -16,8 +18,10 @@ public:
         Volume,
         SetVolume
     };
+    Q_ENUM(CommandName)
 
-    Commands();
+    Commands(QObject* parent = 0);
+    ~Commands();
 
     QString loadCommands();
 
@@ -31,7 +35,5 @@ private:
 
     QHash<QString, QString> m_commandToCommandLine;
 };
-
-Q_DECLARE_METATYPE(Commands::CommandName)
 
 #endif // COMMANDS_H

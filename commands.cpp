@@ -6,7 +6,13 @@
 
 #include "utils.h"
 
-Commands::Commands()
+Commands::Commands(QObject* parent)
+    :
+    QObject(parent)
+{
+}
+
+Commands::~Commands()
 {
 }
 

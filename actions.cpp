@@ -38,7 +38,9 @@ QString Actions::loadActions()
         {
             Commands::CommandName commandName = Commands::fromString(action.value("command").toString());
 
-            m_keyToAction.insert(key, commandName);
+            QVariant variant;
+            variant.setValue(commandName);
+            m_keyToAction.insert(key, variant);
         }
         else
         {

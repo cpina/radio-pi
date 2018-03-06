@@ -50,7 +50,8 @@ void MainWindow::changeToStation(const QString& text)
     }
     else if (action.canConvert<Commands::CommandName>())
     {
-        qDebug() << "SSSSSSSSSSSSSSSSSSSUPER!";
+        Commands::CommandName commandName = action.value<Commands::CommandName>();
+        m_commands.executeCommand(commandName);
     }
     else
     {
