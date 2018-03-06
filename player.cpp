@@ -20,8 +20,8 @@ void Player::play(const QString &url)
     stopPlaying();
     m_player.reset(new QProcess);
 
-    connect(m_player.data(), SIGNAL(readyReadStandardOutput()),
-            this, SLOT(processMplayerOutput()));
+    connect(m_player.data(), &QProcess::readyReadStandardOutput,
+            this, &Player::processMplayerOutput);
 
     startAndLog("mplayer", QStringList{"--quiet", url});
     emit song("Loading...");

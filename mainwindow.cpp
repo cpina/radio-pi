@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupInputHandling();
 
-    connect(&m_player, SIGNAL(song(QString)),
-            this, SLOT(changeSongName(QString)));
+    connect(&m_player, &Player::song,
+            this, &MainWindow::changeSongName);
 
     QString error = m_commands.loadCommands();
     if (!error.isEmpty())
@@ -73,23 +73,23 @@ void MainWindow::setupInputHandling()
 {
     installEventFilter(&m_inputHandling);
 
-    connect(&m_inputHandling, SIGNAL(changeToStation(QString)),
-            this, SLOT(changeToStation(QString)));
+    connect(&m_inputHandling, &InputHandling::changeToStation,
+            this, &MainWindow::changeToStation);
 
-    connect(&m_inputHandling, SIGNAL(stationUp()),
-            this, SLOT(nextRadioStation()));
+    connect(&m_inputHandling, &InputHandling::stationUp,
+            this, &MainWindow::nextRadioStation);
 
-    connect(&m_inputHandling, SIGNAL(stationDown()),
-            this, SLOT(previousRadioStation()));
+    connect(&m_inputHandling, &InputHandling::stationDown,
+            this, &MainWindow::previousRadioStation);
 
-    connect(&m_inputHandling, SIGNAL(volumeUp()),
-            &m_volume, SLOT(volumeUp()));
+    connect(&m_inputHandling, &InputHandling::volumeUp,
+            &m_volume, &Volume::volumeUp);
 
-    connect(&m_inputHandling, SIGNAL(volumeDown()),
-            &m_volume, SLOT(volumeDown()));
+    connect(&m_inputHandling, &InputHandling::volumeDown,
+            &m_volume, &Volume::volumeDown);
 
-    connect(&m_volume, SIGNAL(volumeChanged(int)),
-            this, SLOT(updateVolumeStatus(int)));
+    connect(&m_volume, &Volume::volumeChanged,
+            this, &MainWindow::updateVolumeStatus);
 }
 
 void MainWindow::previousRadioStation()
