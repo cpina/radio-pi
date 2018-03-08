@@ -1,6 +1,6 @@
 {
 	"change_station_up": ["Key_Up"],
 	"change_station_down": ["Key_Down"],
-	"volume_up": ["Key_Right", 161, 61],
-	"volume_down": ["Key_Left", 39, 45]
+	"volume_up": ["Key_Right", 161, 61, "Key_exclamdown"],
+	"volume_down": ["Key_Left", 39, 45, "Key_Apostrophe"]
 }

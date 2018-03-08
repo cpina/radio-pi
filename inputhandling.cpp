@@ -116,6 +116,9 @@ bool InputHandling::eventFilter(QObject* object, QEvent* event)
         return false;
     }
 
+    Qt::Key key = static_cast<Qt::Key>(keyEvent->key());
+    qDebug() << "==== key pressed:" << key;
+
     QString text = keyEvent->text();
     bool ok;
     text.toInt(&ok);
@@ -142,18 +145,14 @@ bool InputHandling::eventFilter(QObject* object, QEvent* event)
             return true;
         }
 
+        if (startsWith(m_currentInput) == 0)
+        {
+            m_currentInput.clear();
+        }
+        m_waitForKeys.start();
+        return true;
     }
 
-    if (startsWith(m_currentInput) == 0)
-    {
-        m_currentInput.clear();
-    }
-    m_waitForKeys.start();
-    return true;
-
-
-    Qt::Key key = static_cast<Qt::Key>(keyEvent->key());
-    qDebug() << "==== key:" << key;
     if (m_keyToSignal.contains(key))
     {
         SignalType signalName = m_keyToSignal.value(key);
