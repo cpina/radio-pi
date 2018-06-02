@@ -1,10 +1,20 @@
 # radio-pi
 
-This is a personal project to play radio stations designed to be working in a Raspberry pi (event without X11 with framebuffer) but also works on a GNU/Linux (Debian, Ubuntu, etc.).
+This is a personal project to play radio stations designed to be working in a Raspberry Pi (event without X11 with framebuffer) but also works on a GNU/Linux (Debian, Ubuntu, etc.).
 
 We've been using it for months almost daily. The UI/UX could be improved but it works as it is now.
 
-## Dependencies
+If you want to use it: you might need some patience and might need some tweaking: this has only been used in two or three computers and only one Raspberry Pi, it's not setup for an easy installation.
+
+If it works using a Raspberry Pi and TFT screen the final result looks like:
+
+![radio-pi in the box](docs/bbc5.jpg)
+
+And a small remote control to control the software (I've considered and it's easy to add touch screen control but haven't done it yet).
+
+To change the radio stations (it comes with a few already there) it's needed to edit a JSON file (some day we might do a Web backend to help on this).
+
+## Basic Dependencies
 * Qt 5
 * mplayer
 * Suggested: alsamixer
@@ -33,6 +43,7 @@ make
 In the same directory as the radio-pi there should be a directory named `configuration`. The cloned repository has a default configuration directory.
 
 Executing `radio-pi` should appear a screen like:
+
 ![Screenshot](docs/screenshot.png)
 
 The repository has a `configuration` directory with three files:
@@ -90,6 +101,8 @@ To try to keep the software as general as possible the user can define which com
 Arrow up/down to change stations up/down.
 Arrow left/right to change the volume. Also the volume up/down in a remote control.
 
+To power off correctly: we have that the channel 99 executes a script that is doing a "sudo halt" and this is our way to switch it off (note that we then use a switch by the plug to switch the power off).
+
 ## Crosscompile in a Desktop GNU/Linux to be used in a RaspberrPi
 To setup the Debian "standard x86-64" environment for cross-compilation I followed:
 https://wiki.qt.io/RaspberryPi2EGLFS
@@ -104,7 +117,7 @@ Go to Tools -> Options -> Build&Run -> Compilers
 
 # Hardware for RaspberryPi
 Hardware components used to build our radio-pi:
-(link to The Pit Hut just for reference)
+(link to The Pi Hut just for reference)
 
 ## Raspberry Pi basics
 * ![Raspberry Pi 3 model B](https://thepihut.com/products/raspberry-pi-3-model-b). It has WiFi which is handy to move the radio at home (alternatively a Raspberry Pi 2 with a USB WiFi adaptor might have worked).
@@ -128,4 +141,14 @@ Hardware components used to build our radio-pi:
 # Hardware general instructions
 As said earlier I installed the TFT screen physically, then followed the ![instructions](https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi) linked from the ![TFT screen page](https://thepihut.com/products/adafruit-pitft-plus-480x320-3-5-tft-touchscreen?variant=13930062980).
 
+Then setup the WiFi to connect it automatically to the network.
+
 Once the TFT was working I disabled the X11 system and I launch the radio-pi software on the boot process (I can't remember if I did it with a crontab @reboot or I forced a login without password and then from the .bashrc).
+
+# TODO
+radio-pi works and we use it almost daily. A few things could be added:
+* Setup process: it would be possible to copy an image, using the TFT screen it could ask for the WiFi SSID and password, connect to the network and then from another computer in the network connect to setup the stations
+* Web frontend to modify the stations or all the setup and maybe download station names/URLs from a remote server
+* Show the IP of the Raspbbery Pi (would help to ssh, connect there if it had the frontend, etc.).
+* Improve the UI of the radio-pi
+* Be able to execute commands (partially already possible like the power_off example) but get the result and show it on the screen. Then changing the station would execute a command and show the result
