@@ -1,16 +1,18 @@
 # radio-pi
 
-This is a personal project to play radio stations designed to be working in a Raspberry Pi (event without X11 with framebuffer) but also works on a GNU/Linux (Debian, Ubuntu, etc.).
+This is a personal project to play radio stations broadcasted from the internet. It works with a Raspberry Pi (event without X11 with framebuffer) and also works on a GNU/Linux (Debian, Ubuntu, etc.).
 
 We've been using it for months almost daily. The UI/UX could be improved but it works as it is now.
 
 If you want to use it: you might need some patience and might need some tweaking: this has only been used in two or three computers and only one Raspberry Pi, it's not setup for an easy installation.
 
-If it works using a Raspberry Pi and TFT screen the final result looks like:
+Setting this up with a Raspberry Pi and TFT screen the final result looks like:
 
 ![radio-pi in the box](docs/bbc5.jpg)
 
-And a small remote control to control the software (I've considered and it's easy to add touch screen control but haven't done it yet).
+And a small remote control to control the software (it's possibly easier to implement than the touch screen and actually it's more comfortable to use).
+
+Note that the remote control emulates a keyboard, from the software point of view it's like pressing keys in a keyboard.
 
 To change the radio stations (it comes with a few already there) it's needed to edit a JSON file (some day we might do a Web backend to help on this).
 
@@ -144,6 +146,8 @@ As said earlier I installed the TFT screen physically, then followed the ![instr
 Then setup the WiFi to connect it automatically to the network.
 
 Once the TFT was working I disabled the X11 system and I launch the radio-pi software on the boot process (I can't remember if I did it with a crontab @reboot or I forced a login without password and then from the .bashrc).
+
+Also, setup the USB remote control receiver to work with the remote control. The Pi Hut website has instructions. Basically a software needs to be executed on the computer, select a remote control similar to the bought one, select one of the buttons on the software and press the button on the remote and do this for all the buttons. This only needs to be done once, then the USB receiver acts like a keyboard.
 
 # TODO
 radio-pi works and we use it almost daily. A few things could be added:
