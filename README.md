@@ -56,14 +56,14 @@ stations.json
 ```
 
 ### stations.json
-[See example!](http://raw.githubusercontent.com/cpina/radio-pi/master/configuration/stations.json)
+[See example](http://raw.githubusercontent.com/cpina/radio-pi/master/configuration/stations.json)
 
 Defines the radio station number, the name to be displayed and the URL that will be used with `mplayer` to play this radio station.
 
 Note that a "radio station" can execute a command (see the radio station 99). The command should exist in `commands.json` and is executed when the user presses this station.
 
 ### keys.json
-[See example!](http://raw.githubusercontent.com/cpina/radio-pi/master/configuration/keys.json)
+[See example](http://raw.githubusercontent.com/cpina/radio-pi/master/configuration/keys.json)
 
 Defines the possible keys to react for the default actions:
  * change_station_up
@@ -83,7 +83,7 @@ If the name of the keys is unknown execute `radio-pi`, select the window, press 
 Or a number - this are the names or numbers that can be used.
 
 ### commands.json
-[See example!](https://raw.githubusercontent.com/cpina/radio-pi/master/configuration/commands.json)
+[See example](https://raw.githubusercontent.com/cpina/radio-pi/master/configuration/commands.json)
 
 To try to keep the software as general as possible the user can define which commands are used for a series of actions. This can be tested in the console, for example in:
 ```
@@ -127,7 +127,7 @@ Hardware components used to build our radio-pi:
 * [Raspbian Preinstalled 16GB Micro SD Card](https://thepihut.com/products/raspbian-preinstalled-sd-card). Any 16 GB Micro SD Card would work, actually I removed the installed Raspbian to install the Raspbian with TFT support.
 
 ## Screen
-* [Adafruit PiTFT Plus 480x320 3.5" TFT Touchscreen](https://thepihut.com/products/adafruit-pitft-plus-480x320-3-5-tft-touchscreen?variant=1390062980). TFT screen to display the radio station name, song, etc. alternatively and with another software a matrix LEDs could have been used. I installed the Raspbian image with TFT support as described in ![https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi](the instructions). Then disabled X11 to be used in framebuffer only.
+* [Adafruit PiTFT Plus 480x320 3.5" TFT Touchscreen](https://thepihut.com/products/adafruit-pitft-plus-480x320-3-5-tft-touchscreen?variant=1390062980). TFT screen to display the radio station name, song, etc. alternatively and with another software a matrix LEDs could have been used. I installed the Raspbian image with TFT support as described in [https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi](the instructions). Then disabled X11 to be used in framebuffer only.
 
 ## Remote control
 * [Flirc USB received](https://thepihut.com/products/flirc-usb-dongle-for-the-raspberry-pi). USB receiver to use a remote control to change radio stations/volume, etc.
