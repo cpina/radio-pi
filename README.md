@@ -122,19 +122,19 @@ Hardware components used to build our radio-pi:
 (link to The Pi Hut just for reference)
 
 ## Raspberry Pi basics
-* ![Raspberry Pi 3 model B](https://thepihut.com/products/raspberry-pi-3-model-b). It has WiFi which is handy to move the radio at home (alternatively a Raspberry Pi 2 with a USB WiFi adaptor might have worked).
-* ![Raspberry Pi 3 power supply](https://thepihut.com/products/official-raspberry-pi-universal-power-supply). I preferred buying a 2.5A because of the power consumption for the TFT screen and the WiFi. I haven't double checked if it would really be needed.
-* ![Raspbian Preinstalled 16GB Micro SD Card](https://thepihut.com/products/raspbian-preinstalled-sd-card). Any 16 GB Micro SD Card would work, actually I removed the installed Raspbian to install the Raspbian with TFT support.
+* [Raspberry Pi 3 model B](https://thepihut.com/products/raspberry-pi-3-model-b). It has WiFi which is handy to move the radio at home (alternatively a Raspberry Pi 2 with a USB WiFi adaptor might have worked).
+* [Raspberry Pi 3 power supply](https://thepihut.com/products/official-raspberry-pi-universal-power-supply). I preferred buying a 2.5A because of the power consumption for the TFT screen and the WiFi. I haven't double checked if it would really be needed.
+* [Raspbian Preinstalled 16GB Micro SD Card](https://thepihut.com/products/raspbian-preinstalled-sd-card). Any 16 GB Micro SD Card would work, actually I removed the installed Raspbian to install the Raspbian with TFT support.
 
 ## Screen
-* ![Adafruit PiTFT Plus 480x320 3.5" TFT Touchscreen](https://thepihut.com/products/adafruit-pitft-plus-480x320-3-5-tft-touchscreen?variant=1390062980). TFT screen to display the radio station name, song, etc. alternatively and with another software a matrix LEDs could have been used. I installed the Raspbian image with TFT support as described in ![https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi](the instructions). Then disabled X11 to be used in framebuffer only.
+* [Adafruit PiTFT Plus 480x320 3.5" TFT Touchscreen](https://thepihut.com/products/adafruit-pitft-plus-480x320-3-5-tft-touchscreen?variant=1390062980). TFT screen to display the radio station name, song, etc. alternatively and with another software a matrix LEDs could have been used. I installed the Raspbian image with TFT support as described in ![https://learn.adafruit.com/adafruit-pitft-3-dot-5-touch-screen-for-raspberry-pi](the instructions). Then disabled X11 to be used in framebuffer only.
 
 ## Remote control
-* ![Flirc USB received](https://thepihut.com/products/flirc-usb-dongle-for-the-raspberry-pi). USB receiver to use a remote control to change radio stations/volume, etc.
-* ![Remote control](https://thepihut.com/products/xmbc-ir-remote-control). I liked this one because it's small.
+* [Flirc USB received](https://thepihut.com/products/flirc-usb-dongle-for-the-raspberry-pi). USB receiver to use a remote control to change radio stations/volume, etc.
+* [Remote control](https://thepihut.com/products/xmbc-ir-remote-control). I liked this one because it's small.
 
 ## Speakers
-* ![USB Powered Speakers](https://thepihut.com/products/adafruit-usb-powered-speakers). I chose a USB powered speakers thinking that might work better in case that I wanted some amplification.
+* [USB Powered Speakers](https://thepihut.com/products/adafruit-usb-powered-speakers). I chose a USB powered speakers thinking that might work better in case that I wanted some amplification.
 
 ## For the physical box:
 * Cardboard box
