@@ -27,6 +27,10 @@
 		"name": "BBC 5 Live",
 		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
 	},
+	"22": {
+		"name": "BBC Radio 2",
+		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
+	},
 	"3": {
 		"name": "BBC 6 Music",
 		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
