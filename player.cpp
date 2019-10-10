@@ -23,7 +23,7 @@ void Player::play(const QString &url)
     connect(m_player.data(), &QProcess::readyReadStandardOutput,
             this, &Player::processMplayerOutput);
 
-    startAndLog("mplayer", QStringList{"--quiet", url});
+    startAndLog("mplayer", QStringList{"-quiet", url});
     emit song("Loading...");
 }
 
