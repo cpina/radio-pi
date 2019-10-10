@@ -3,53 +3,29 @@
 		"name": "Smooth FM",
 		"stream": "http://media-ice.musicradio.com/SmoothUKMP3?amsparams=playerid:UKRP;skey:1513640000;&amp;awparams=kxsegs:||;&amp;kuid="
 	},
-	"11": {
-		"name": "Kiss FM",
-		"stream": "https://stream-kiss.planetradio.co.uk/kissnational.aac"
-	},
-	"12": {
-		"name": "Heart London",
-		"stream": "http://media-ice.musicradio.com/HeartLondonMP3.m3u"
-	},
-	"13": {
-		"name": "Absolute 80",
-		"stream": "http://www.radiofeeds.co.uk/a8112mp3.m3u"
-	},
-	"14": {
-		"name": "Absolute 90",
-		"stream": "http://www.radiofeeds.co.uk/a9112mp3.m3u"
-	},
-	"15": {
-		"name": "Absolute 00",
-		"stream": "http://www.radiofeeds.co.uk/a0112mp3.m3u"
-	},
 	"2": {
 		"name": "BBC 5 Live",
 		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
-	},
-	"22": {
-		"name": "BBC Radio 2",
-		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
 	},
 	"3": {
 		"name": "BBC 6 Music",
 		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
 	},
 	"4": {
-		"name": "RAC1",
-		"stream": "http://rac1.radiocat.net"
+		"name": "BBC Radio 2",
+		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
 	},
 	"5": {
 		"name": "RAC 105",
-		"stream": "http://178.32.113.2:80/"
+		"stream": "http://streaming.rac105.cat"
 	},
 	"6": {
-		"name": "Catalunya Ràdio",
-		"stream": "http://www.catradio.cat/directes/catradio_http.m3u"
+		"name": "RAC1",
+		"stream": "http://streaming.rac1.cat"
 	},
 	"7": {
-		"name": "Radio Nacional España",
-		"stream": "http://rne.rtveradio.cires21.com/rne/mp3/icecast.audio"
+		"name": "Catalunya Ràdio",
+		"stream": "http://www.catradio.cat/directes/catradio_http.m3u"
 	},
 	"8": {
 		"name": "Cadena SER",
@@ -58,6 +34,18 @@
 	"9": {
 		"name": "Rock FM (es)",
 		"stream": "http://rockfm.cope.stream.flumotion.com/cope/rockfm/playlist.m3u8"
+	},
+	"10": {
+		"name": "Kiss FM",
+		"stream": "https://stream-kiss.planetradio.co.uk/kissnational.aac"
+	},
+	"12": {
+		"name": "Heart London",
+		"stream": "http://media-ice.musicradio.com/HeartLondonMP3.m3u"
+	},
+	"13": {
+		"name": "Absolute Radio UK",
+		"stream": "http://edge-bauerabsolute-03-gos2.sharp-stream.com/absoluteradio.aac"
 	},
 	"99": {
 		"command": "power_off"
