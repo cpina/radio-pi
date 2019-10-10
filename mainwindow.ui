@@ -36,7 +36,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Station Name</string>
+       <string>Number: Station Name</string>
       </property>
      </widget>
     </item>

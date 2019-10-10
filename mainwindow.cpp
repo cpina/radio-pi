@@ -44,7 +44,7 @@ void MainWindow::changeToStation(const QString& text)
     {
         Stations::Station station = action.value<Stations::Station>();
         QString stationName = station.name;
-        m_ui->station->setText(stationName);
+        m_ui->station->setText(QString("%1: %2").arg(text, stationName));
         m_settings.writeString(Settings::StationNumber, text);
         m_currentStation = text.toInt();
         m_player.play(station.stream);
@@ -63,10 +63,14 @@ void MainWindow::changeToStation(const QString& text)
 void MainWindow::nextRadioStation()
 {
     m_currentStation++;
-    if (m_currentStation == 10)
+
+    QVariant action = m_actions.action(QString::number(m_currentStation));
+
+    if (!action.canConvert<Stations::Station>())
     {
         m_currentStation = 1;
     }
+
     changeToStation(QString::number(m_currentStation));
 }
 
@@ -93,12 +97,37 @@ void MainWindow::setupInputHandling()
             this, &MainWindow::updateVolumeStatus);
 }
 
+int MainWindow::greaterStationNumber()
+{
+    QStringList actions = m_actions.numbers().toList();
+
+    std::sort(actions.begin(), actions.end(), [](QString a, QString b) { return a.toInt() > b.toInt();});
+
+    int i = 0;
+
+    while(i < actions.length())
+    {
+        if (m_actions.action(QString::number(i)).canConvert<Stations::Station>())
+        {
+            break;
+        }
+        i++;
+    }
+
+    if (i == actions.length())
+    {
+        qDebug() << "Cannot find station number to go back after going down";
+    }
+
+    return actions[i].toInt();
+}
+
 void MainWindow::previousRadioStation()
 {
     m_currentStation--;
     if (m_currentStation == 0)
     {
-        m_currentStation = 9;
+        m_currentStation = greaterStationNumber();
     }
     changeToStation(QString::number(m_currentStation));
 }

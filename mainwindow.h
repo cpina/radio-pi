@@ -35,6 +35,7 @@ private Q_SLOTS:
 
 private:
     void setupInputHandling();
+    int greaterStationNumber();
 
     Ui::MainWindow *m_ui;
     Actions m_actions;
