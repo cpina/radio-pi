@@ -29,6 +29,8 @@ Utils::ErrorOrValue Utils::readJsonToVariant(const QString& filePath)
         return errorOrvalue;
     }
 
+    qDebug() << "Using configuration file:" << configurationAbsolutePath;
+
     val = file.readAll();
     file.close();
     QJsonDocument d = QJsonDocument::fromJson(val.toUtf8());
