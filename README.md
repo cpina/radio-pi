@@ -1,3 +1,6 @@
+![ci](https://github.com/cpina/radio-pi/workflows/ci/badge.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # radio-pi
 
 This is a personal project to play radio stations broadcasted from the internet. It works with a Raspberry Pi (even without X11 with framebuffer) and also works on a GNU/Linux (Debian, Ubuntu, etc.).
