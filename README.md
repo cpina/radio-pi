@@ -1,6 +1,6 @@
 # radio-pi
 
-This is a personal project to play radio stations broadcasted from the internet. It works with a Raspberry Pi (event without X11 with framebuffer) and also works on a GNU/Linux (Debian, Ubuntu, etc.).
+This is a personal project to play radio stations broadcasted from the internet. It works with a Raspberry Pi (even without X11 with framebuffer) and also works on a GNU/Linux (Debian, Ubuntu, etc.).
 
 We've been using it for months almost daily. The UI/UX could be improved but it works as it is now.
 
