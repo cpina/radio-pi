@@ -5,15 +5,15 @@
 	},
 	"2": {
 		"name": "BBC 5 Live",
-		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
+		"stream": "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live"
 	},
 	"3": {
 		"name": "BBC 6 Music",
-		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
+		"stream": "http://stream.live.vc.bbcmedia.co.uk/bbc_6music"
 	},
 	"4": {
 		"name": "BBC Radio 2",
-		"stream": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
+		"stream": "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two"
 	},
 	"5": {
 		"name": "RAC 105",
@@ -25,19 +25,19 @@
 	},
 	"7": {
 		"name": "Catalunya Ràdio",
-		"stream": "http://www.catradio.cat/directes/catradio_http.m3u"
+		"stream": "https://shoutcast.ccma.cat/ccma/catalunyaradioHD.mp3"
 	},
 	"8": {
-		"name": "Cadena SER",
-		"stream": "http://19373.live.streamtheworld.com/SER_BARCELONA.mp3"
+		"name": "Radio Cunit",
+		"stream": "https://streaming.enacast.com/radiocunitHD.mp3"
 	},
 	"9": {
 		"name": "Rock FM (es)",
 		"stream": "http://rockfm.cope.stream.flumotion.com/cope/rockfm/playlist.m3u8"
 	},
 	"10": {
-		"name": "Kiss FM",
-		"stream": "https://stream-kiss.planetradio.co.uk/kissnational.aac"
+		"name": "Melodia FM",
+		"stream": "http://icecast-streaming.nice264.com/melodiafmback"
 	},
 	"11": {
 		"name": "Heart London",
