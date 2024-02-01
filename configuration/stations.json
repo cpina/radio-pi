@@ -4,12 +4,12 @@
 		"stream": "http://media-ice.musicradio.com/SmoothUKMP3?amsparams=playerid:UKRP;skey:1513640000;&amp;awparams=kxsegs:||;&amp;kuid="
 	},
 	"2": {
-		"name": "BBC 5 Live",
-		"stream": "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live"
+		"name": "Rock FM",
+		"stream": "https://rockfm-cope.flumotion.com/playlist.m3u8"
 	},
 	"3": {
-		"name": "BBC 6 Music",
-		"stream": "http://stream.live.vc.bbcmedia.co.uk/bbc_6music"
+		"name": "RAC 105",
+		"stream": "https://20133.live.streamtheworld.com/RAC105AAC/HLS/playlist.m3u8"
 	},
 	"4": {
 		"name": "BBC Radio 2",
@@ -17,7 +17,7 @@
 	},
 	"5": {
 		"name": "RAC 105",
-		"stream": "http://streaming.rac105.cat"
+		"stream": "https://20133.live.streamtheworld.com/RAC105AAC/HLS/playlist.m3u8"
 	},
 	"6": {
 		"name": "RAC1",

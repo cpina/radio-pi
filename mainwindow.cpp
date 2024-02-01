@@ -99,7 +99,7 @@ void MainWindow::setupInputHandling()
 
 int MainWindow::greaterStationNumber()
 {
-    QStringList actions = m_actions.numbers().toList();
+    QStringList actions = m_actions.numbers().values();
 
     std::sort(actions.begin(), actions.end(), [](QString a, QString b) { return a.toInt() > b.toInt();});
 
