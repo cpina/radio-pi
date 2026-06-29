@@ -2,7 +2,7 @@
 
 #include <QDebug>
 #include <QProcess>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "utils.h"
 

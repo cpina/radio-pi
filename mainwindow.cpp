@@ -1,14 +1,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <csignal>
 
 #include <QProcess>
 #include <QDebug>
+
+static void handle_signal(int)
+{
+    QMetaObject::invokeMethod(
+        qApp,
+        [] {
+            qApp->quit();
+        },
+        Qt::QueuedConnection
+    );
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
+
+    std::signal(SIGTERM, handle_signal);
+    std::signal(SIGINT, handle_signal);
 
     setupInputHandling();
 
@@ -99,7 +114,9 @@ void MainWindow::setupInputHandling()
 
 int MainWindow::greaterStationNumber()
 {
-    QStringList actions = m_actions.numbers().toList();
+    QStringList actions(m_actions.numbers().begin(), m_actions.numbers().end());
+    std::sort(actions.begin(), actions.end());
+    // QStringList actions = m_actions.numbers().toList();
 
     std::sort(actions.begin(), actions.end(), [](QString a, QString b) { return a.toInt() > b.toInt();});
 

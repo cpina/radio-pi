@@ -57,53 +57,48 @@ void InputHandling::finishedWritingStationNumber()
 
 QString InputHandling::loadKeys()
 {
-    Utils::ErrorOrValue errorOrvalue = Utils::readJsonToVariant("configuration/keys.json");
+    Utils::ErrorOrValue errorOrValue =
+        Utils::readJsonToVariant("configuration/keys.json");
     m_keyToSignal.clear();
 
-    if (!errorOrvalue.error.isEmpty())
-    {
-        return errorOrvalue.error;
+    if (!errorOrValue.error.isEmpty()) {
+        return errorOrValue.error;
     }
 
-    QMap<QString, QVariant> keys = errorOrvalue.value.toMap();
+    const QMap<QString, QVariant> keys = errorOrValue.value.toMap();
+    const QMetaEnum metaEnum = QMetaEnum::fromType<Qt::Key>();
 
-    // TODO: refactor this 3 fors
-    for (const QString& key : keys.keys())
-    {
-        SignalType signalName = m_stringToSignal.value(key);
+    for (auto it = keys.cbegin(); it != keys.cend(); ++it) {
+        const QString &keyName = it.key();
+        const SignalType signalName = m_stringToSignal.value(keyName);
 
-        for (const QVariant& configurationKeys : keys.values(key))
-        {
-            for (const QVariant& configurationKey : configurationKeys.toList())
-            {
-                Qt::Key key;
-                bool ok;
-                int configurationKeyInt = configurationKey.toInt(&ok);
+        const QVariantList configurationKeys = it.value().toList();
 
-                // The key in the configuration file was an int
-                if (ok)
-                {
-                    key = static_cast<Qt::Key>(configurationKeyInt);
-                    m_keyToSignal.insert(key, signalName);
-                    continue;
-                }
+        for (const QVariant &configurationKey : configurationKeys) {
+            bool ok = false;
+            Qt::Key key;
 
-                // The key in the configuration file was a QString very likely representing a Qt::Key
-                QMetaEnum metaEnum = QMetaEnum::fromType<Qt::Key>();
+            const int configurationKeyInt = configurationKey.toInt(&ok);
 
-                key = static_cast<Qt::Key>(metaEnum.keyToValue(configurationKey.toString().toUtf8().constData(), &ok));
+            if (ok) {
+                key = static_cast<Qt::Key>(configurationKeyInt);
+                m_keyToSignal.insert(key, signalName);
+                continue;
+            }
 
-                if (ok)
-                {
-                    m_keyToSignal.insert(key, signalName);
-                    continue;
-                }
+            key = static_cast<Qt::Key>(
+                metaEnum.keyToValue(
+                    configurationKey.toString().toUtf8().constData(), &ok));
+
+            if (ok) {
+                m_keyToSignal.insert(key, signalName);
             }
         }
     }
 
     return QString();
 }
+
 
 bool InputHandling::eventFilter(QObject* object, QEvent* event)
 {

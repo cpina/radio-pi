@@ -58,5 +58,6 @@ QVariant Actions::action(const QString& key) const
 
 QSet<QString> Actions::numbers() const
 {
-    return m_keyToAction.keys().toSet();
+    const auto keys = m_keyToAction.keys();
+    return QSet<QString>(keys.begin(), keys.end());
 }
